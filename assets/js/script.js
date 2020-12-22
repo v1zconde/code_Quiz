@@ -19,20 +19,23 @@ var timerInterval;
 var Initials = "";
 var score;
 var quizType = "";
+highscoreLink.addEventListener("click", getHighScores);
 
 function startQuiz() {
   cleanValues();
   startScreen.setAttribute("class", "hide");
   startBtn.setAttribute("class", "hide");
   questionsEl.removeAttribute("class", "hide");
-  setQuestion();
   setTime();
-  
+  setQuestion();
+   
 }
 
 
 
 function setTime() {
+  timeEl.removeAttribute("class", "hide");
+  secondsLeft = 100;
   timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds ";
@@ -42,7 +45,6 @@ function setTime() {
       alert("!!Time is Over.!!!");
       yourScore();
     }
-
   }, 1000);
 }
 
@@ -53,7 +55,7 @@ function setQuestion(){
   answer = questions[currentQuestionIndex].answer;
   // todoCountSpan.textContent = jsQuestions.length;
 
-  qTitleEl.textContent = questions[currentQuestionIndex].title;
+  qTitleEl.textContent = ((currentQuestionIndex + 1) + ". " + questions[currentQuestionIndex].title);
  
   var choices = questions[currentQuestionIndex].choices;
 
@@ -195,15 +197,18 @@ function yourScore(){
       getHighScores();
     }
   });
-
-
-
 }
 
 function getHighScores(){
   startScreen.setAttribute("class", "hide");
   startBtn.setAttribute("class", "hide");
   mainEl.innerHTML = "";
+  mainEl.removeAttribute("class", "hide");
+  questionsEl.setAttribute("class", "hide");
+  clearInterval(timerInterval);
+   timeEl.setAttribute("class", "hide");
+  
+
   
 
   let storedScores = JSON.parse(localStorage.getItem("highScores")); 
@@ -215,7 +220,7 @@ function getHighScores(){
 
   mainEl.appendChild(heading);
 
-  // Render a new li for each score
+  
   // TODO check for this error 
   if ( storedScores !== null ) {
     // sort scores
@@ -252,11 +257,10 @@ function getHighScores(){
   playAgain.addEventListener("click", startQuiz);
 }
 
-highscoreLink.addEventListener("click", getHighScores);
+
 
 function cleanValues(){
   finish.setAttribute("class", "hide");
-  secondsLeft = 100;
-  currentQuestionIndex = -1;
+   currentQuestionIndex = -1;
   finish.innerHTML = "";  
 }
