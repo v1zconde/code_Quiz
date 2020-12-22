@@ -10,6 +10,11 @@ body{
 background-color: #F85B1A;
 }
 
+.navbar h1{
+font-size: 18px;
+font-weight: bolder;
+
+}
 .navbar .dropdown-menu{
 	background-color: #FFD7C1;
 
@@ -31,4 +36,19 @@ h1 {
 	border-width: 5px;
 	color: white;
 	font-weight: bolder;
+}
+
+.highLight .correct{
+background-color: chartreuse;
+}
+
+.highLight .incorrect{
+background-color: red;
+
+}
+
+#finish {
+
+background-color: white;
+
 }

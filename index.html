@@ -13,7 +13,7 @@
 
 <body>
   <!--Start of the Nav-->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <nav class="navbar navbar-expand-md navbar-light fixed-top">
     <a class="navbar-brand" href="./index.html">
       <img src="./assets/img/gokulogo.png" width="40" height="40" alt="goku logo"></a>
     <!-- Icon for the navbar-->
@@ -21,22 +21,23 @@
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <h1 id="navbar-title">Dragon Ball Super</h1>
+    <h1 id="navbar-title ml-auto mr-auto">Dragon Ball Super</h1>
     <!--Right side of the Navbar with the menu-->
     <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-auto ml-auto">
+      <ul class="navbar-nav ml-auto">
         <!--Index option of the navbar-->
         <li class="nav-item active">
           <a class="nav-link" href="./index.html">Home</a>
         </li>
         <!--Portfolio dropdown option of the navbar-->
         <li class="nav-item dropdown ">
-         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             More DBS
           </a>
           <div class="dropdown-menu border border-dark text-center" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item border-bottom border-dark" href="https://en.wikipedia.org/wiki/Dragon_Ball_Super">Wikipedia DBS</a>
+            <a class="dropdown-item border-bottom border-dark"
+              href="https://en.wikipedia.org/wiki/Dragon_Ball_Super">Wikipedia DBS</a>
             <a class="dropdown-item" href="https://www.hulu.com/series/0921b58c-bef9-4a4d-a677-03ec7745428c"
               target="_blank">Hulu DBS</a>
           </div>
@@ -49,9 +50,9 @@
     </div>
   </nav>
 
-  
+
   <div class="container-fluid">
-    <h3 id="time" class="text-left">time</h3>
+    <h3 id="time" class="text-left"></h3>
     <div class="wrapper">
       <div class="d-flex-fluid align-content-center text-center">
         <div id="start-screen" class="row start p-2 flex-column border-info">
@@ -70,14 +71,17 @@
             <button id="button-start" class="btn">Start Quiz</button>
           </div>
         </div>
-
+        <section id="finish"></section>
         <div id="questions" class="hide">
           <h2 id="question-tittle"></h2>
-          <div id="choices" class="choices"></div>
+          <ul id="choices" class="choices"></ul>
+          <p class="wrongOrRight"></p>
         </div>
+
       </div>
     </div>
   </div>
+
 
 
 
