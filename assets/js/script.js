@@ -1,4 +1,5 @@
 // Select start button
+var highscoreLink = document.querySelector("#highscore");
 var startBtn = document.getElementById("button-start");
 var timeEl = document.querySelector("#time");
 let mainEl = document.querySelector("#finish");
@@ -20,7 +21,7 @@ var score;
 var quizType = "";
 
 function startQuiz() {
-  
+  cleanValues();
   startScreen.setAttribute("class", "hide");
   startBtn.setAttribute("class", "hide");
   questionsEl.removeAttribute("class", "hide");
@@ -123,7 +124,7 @@ function showFeedback(){
 // }
 
 function yourScore(){
-  finish.innerHTML = "";
+ 
   finish.removeAttribute("class", "hide");
   questionsEl.setAttribute("class", "hide");
   timeEl.setAttribute("class", "hide");
@@ -169,11 +170,7 @@ function yourScore(){
   mainEl.appendChild(playAgain);
 
   playAgain.addEventListener("click", function(){
-    finish.setAttribute("class", "hide");
-    secondsLeft = 100;
-    currentQuestionIndex = -1;
-    startQuiz();
-    
+    startQuiz(); 
   });
 
   initialsInput.addEventListener("input", function() {
@@ -194,10 +191,72 @@ function yourScore(){
       }
 
       localStorage.setItem("highScores", JSON.stringify(storedScores));
-      highScores();
+      finish.innerHTML = "";
+      getHighScores();
     }
   });
 
 
 
+}
+
+function getHighScores(){
+  startScreen.setAttribute("class", "hide");
+  startBtn.setAttribute("class", "hide");
+  mainEl.innerHTML = "";
+  
+
+  let storedScores = JSON.parse(localStorage.getItem("highScores")); 
+
+  // draw heading
+  let heading = document.createElement("h2");
+  heading.setAttribute("id", "main-heading");
+  heading.textContent = "Top 5 High Score Hall of Fame";
+
+  mainEl.appendChild(heading);
+
+  // Render a new li for each score
+  // TODO check for this error 
+  if ( storedScores !== null ) {
+    // sort scores
+    storedScores.sort((a,b) => (a.score < b.score) ? 1: -1);
+
+    // sets the number of scores to display to 5 or the number of games played. Which ever is less
+    let numScores2Display = 5;
+    if ( storedScores.length < 5 ) { 
+      numScores2Display = storedScores.length; 
+    }
+
+    for (var i = 0; i < numScores2Display; i++) {
+      var s = storedScores[i];
+
+      var p = document.createElement("p");
+      p.textContent = s.name + " " + s.score;
+      mainEl.appendChild(p);
+    }
+  } else {
+    var p = document.createElement("p");
+    p.textContent =  "Your Initials Here!"
+    mainEl.appendChild(p);
+  }
+
+
+  // creates button to start the game
+  let playAgain = document.createElement("button");
+  playAgain.setAttribute("id", "playAgain");
+  playAgain.setAttribute("class", "btn btn-secondary");
+  playAgain.textContent = "Play!";
+
+  mainEl.appendChild(playAgain);
+
+  playAgain.addEventListener("click", startQuiz);
+}
+
+highscoreLink.addEventListener("click", getHighScores);
+
+function cleanValues(){
+  finish.setAttribute("class", "hide");
+  secondsLeft = 100;
+  currentQuestionIndex = -1;
+  finish.innerHTML = "";  
 }
