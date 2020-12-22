@@ -20,6 +20,7 @@ var Initials = "";
 var score;
 var quizType = "";
 highscoreLink.addEventListener("click", getHighScores);
+let qPicturesEl = document.querySelector("#question-pics");
 
 function startQuiz() {
   cleanValues();
@@ -53,8 +54,8 @@ function setQuestion(){
   currentQuestionIndex++
   choicesEl.innerHTML = "";
   answer = questions[currentQuestionIndex].answer;
-  // todoCountSpan.textContent = jsQuestions.length;
-
+ 
+  qPicturesEl.setAttribute("src", "./assets/img/question" + (currentQuestionIndex + 1 + ".jpg"));
   qTitleEl.textContent = ((currentQuestionIndex + 1) + ". " + questions[currentQuestionIndex].title);
  
   var choices = questions[currentQuestionIndex].choices;
@@ -107,23 +108,6 @@ function hideFeedback(){
 function showFeedback(){
   pElement.removeAttribute("class");
 }
-
-// function highLight(td, check){
-//   selectedTd = td;
-//   if (check){
-//   selectedTd.setAttribute("class", "highlight correct");
-//   }
-//   else{
-//     selectedTd.setAttribute("class", "highlight incorrect");
-//   }
-// }
-
-
-// function dhighLight(td) {
-//   selectedTd = td;
-//   selectedTd.removeAttribute("class", "highlight");
-
-// }
 
 function yourScore(){
  
