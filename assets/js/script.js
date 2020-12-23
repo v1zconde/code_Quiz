@@ -58,7 +58,7 @@ function setQuestion(){
   questionPics.setAttribute("src", pictures);
   questionPics.setAttribute("witdth", "350");
   questionPics.setAttribute("height", "350");
-  questionPics.setAttribute("class", "rounded mx-auto d-block p-3");
+  questionPics.setAttribute("class", "rounded img-fluid mx-auto d-block p-3");
   choicesEl.appendChild(questionPics);
 
   qTitleEl.textContent = ((currentQuestionIndex + 1) + ". " + questions[currentQuestionIndex].title);
