@@ -53,6 +53,7 @@ function setQuestion(){
   
   answer = questions[currentQuestionIndex].answer;
   var pictures = questions[currentQuestionIndex].picture;
+  //Picture for every question
   var questionPics = document.createElement("img");
   questionPics.setAttribute("src", pictures);
   questionPics.setAttribute("witdth", "350");
@@ -60,11 +61,10 @@ function setQuestion(){
   questionPics.setAttribute("class", "rounded mx-auto d-block p-3");
   choicesEl.appendChild(questionPics);
 
-
   qTitleEl.textContent = ((currentQuestionIndex + 1) + ". " + questions[currentQuestionIndex].title);
  
   var choices = questions[currentQuestionIndex].choices;
-
+  //runing how many choices i have for the question
   for (var i = 0; i < choices.length; i++) {
 
   var nextChoice = document.createElement("button");
@@ -73,7 +73,7 @@ function setQuestion(){
   }
 
 }
-
+//enter when click to a choice.
 choicesEl.addEventListener("click", function (event) {
     
     if ((currentQuestionIndex + 1 ) < questions.length) {
@@ -116,14 +116,16 @@ function yourScore(){
   clearInterval(timerInterval);
   console.log(score);
 
-  let heading = document.createElement("p");
+  let heading = document.createElement("h3");
   heading.setAttribute("id", "main-heading");
+  heading.setAttribute("class", "p-3");
   heading.textContent = "Finished the Game.! Good Job.! Did you beat the high Score?";
 
   // creates elements with the instructions for the game
-  let instructions = document.createElement("p");
+  let instructions = document.createElement("h3");
   instructions.setAttribute("id", "instructions");
-  instructions.textContent = " Your score is " + score; 
+  instructions.setAttribute("class", "p-3")
+  instructions.textContent = " Your score is =  " + score; 
 
   // creates button to start the game
   let playAgain = document.createElement("button");
@@ -156,7 +158,7 @@ function yourScore(){
   playAgain.addEventListener("click", function(){
     startQuiz(); 
   });
-
+  //everytime the user type in the input
   initialsInput.addEventListener("input", function() {
     initialsInput.value = initialsInput.value.toUpperCase();
     if ( initialsInput.value.length === 3 ) { 
@@ -193,8 +195,9 @@ function getHighScores(){
   let storedScores = JSON.parse(localStorage.getItem("highScores")); 
 
   // draw heading
-  let heading = document.createElement("h2");
+  let heading = document.createElement("h1");
   heading.setAttribute("id", "main-heading");
+  heading.setAttribute("class", "display-4 p-3")
   heading.textContent = "Top 5 High Score Hall of Fame";
   mainEl.appendChild(heading);
 
@@ -209,13 +212,22 @@ function getHighScores(){
     if ( storedScores.length < 5 ) { 
       numScores2Display = storedScores.length; 
     }
-
+    //creating the back to paste the ul
+    var background = document.createElement("div");
+    background.setAttribute("id", "background");
+    background.setAttribute("class", "d-flex flex-column");
+    mainEl.appendChild(background);
+    //creating the ul to add the list of hall of fame
+    var lista = document.createElement("ul");
+    lista.setAttribute("id", "lista");
+    lista.setAttribute("class", "list-inline mx-auto justify-content-center");
+    background.appendChild(lista);
     for (var i = 0; i < numScores2Display; i++) {
       var s = storedScores[i];
-
-      var p = document.createElement("p");
-      p.textContent = s.name + " " + s.score;
-      mainEl.appendChild(p);
+      var li = document.createElement("li");
+      li.setAttribute("class", "font-weight-bold p-1 m-1 list-group-item-warning")
+      li.textContent = (i+1) + ". " + s.name + " " + s.score;
+      lista.appendChild(li);
     }
   } else {
     var p = document.createElement("p");

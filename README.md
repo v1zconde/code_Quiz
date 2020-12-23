@@ -45,4 +45,11 @@ Deployed URL: [https://v1zconde.github.io/code_Quiz/](https://v1zconde.github.io
 
 ## Website
 ---
+### Home Page
 ![Index Page](./assets/img/index_full_page.png)
+### Playing
+![Playing](./assets/img/playing_full_page.png)
+### Enter Score
+![Enter Score](./assets/img/score_full_page.png)
+### High Score
+![High Score](./assets/img/highscore_full_page.png)

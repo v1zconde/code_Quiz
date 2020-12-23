@@ -47,12 +47,13 @@ background-color: red;
 
 }
 
-.timeleft{
-
-	
+#time{
+	color: #F85B1A;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	text-align: left;
+	width: max-content;
+	border: #F85B1A;
+	border-style: double;
+	border-radius: 5px;
+	padding: 3px;
 }
-/* #finish {
-
-background-color: white;
-
-} */

@@ -1,3 +1,4 @@
+//all the questions for the Quiz
 var questions = [
     {
       title: "During the Saiyan Saga, how does Goku reach King Kai's planet?",
