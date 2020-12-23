@@ -50,10 +50,9 @@ background-color: red;
 #time{
 	color: #F85B1A;
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	text-align: left;
+	text-align: center;
 	width: max-content;
 	border: #F85B1A;
 	border-style: double;
-	border-radius: 5px;
 	padding: 3px;
 }
