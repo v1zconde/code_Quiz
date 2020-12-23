@@ -20,19 +20,16 @@ var Initials = "";
 var score;
 var quizType = "";
 highscoreLink.addEventListener("click", getHighScores);
-let qPicturesEl = document.querySelector("#question-pics");
 
+//function to start the Quiz
 function startQuiz() {
   cleanValues();
   startScreen.setAttribute("class", "hide");
   startBtn.setAttribute("class", "hide");
   questionsEl.removeAttribute("class", "hide");
   setTime();
-  setQuestion();
-   
+  setQuestion();   
 }
-
-
 
 function setTime() {
   timeEl.removeAttribute("class", "hide");
@@ -49,13 +46,21 @@ function setTime() {
   }, 1000);
 }
 
-
+//creating the questions
 function setQuestion(){
   currentQuestionIndex++
   choicesEl.innerHTML = "";
+  
   answer = questions[currentQuestionIndex].answer;
- 
-  qPicturesEl.setAttribute("src", "./assets/img/question" + (currentQuestionIndex + 1 + ".jpg"));
+  var pictures = questions[currentQuestionIndex].picture;
+  var questionPics = document.createElement("img");
+  questionPics.setAttribute("src", pictures);
+  questionPics.setAttribute("witdth", "350");
+  questionPics.setAttribute("height", "350");
+  questionPics.setAttribute("class", "rounded mx-auto d-block p-3");
+  choicesEl.appendChild(questionPics);
+
+
   qTitleEl.textContent = ((currentQuestionIndex + 1) + ". " + questions[currentQuestionIndex].title);
  
   var choices = questions[currentQuestionIndex].choices;
@@ -69,9 +74,6 @@ function setQuestion(){
 
 }
 
-
-
-
 choicesEl.addEventListener("click", function (event) {
     
     if ((currentQuestionIndex + 1 ) < questions.length) {
@@ -82,15 +84,11 @@ choicesEl.addEventListener("click", function (event) {
         pElement.innerHTML = "YES!";
         rightAnswer++;
         setTimeout(hideFeedback,1225);
-        // setTimeout(dhighLight,1225);
-        // highLight(event.target,true);
         showFeedback();   
         
     } else {
         pElement.innerHTML = "WRONG.";
-        setTimeout(hideFeedback,1225);
-        // setTimeout(dhighLight,1225);
-        // highLight(event.target, false);
+        setTimeout(hideFeedback,1225); 
         secondsLeft = secondsLeft - 10;
         showFeedback();
     }    
@@ -110,7 +108,7 @@ function showFeedback(){
 }
 
 function yourScore(){
- 
+ //restart the screen to show the score
   finish.removeAttribute("class", "hide");
   questionsEl.setAttribute("class", "hide");
   timeEl.setAttribute("class", "hide");
@@ -169,7 +167,7 @@ function yourScore(){
       //get highscores from memory
       let storedScores = JSON.parse(localStorage.getItem("highScores")); 
      
-
+      //if you have any
       if (storedScores !== null) { 
         storedScores.push(thisScore[0]); 
       } else {
@@ -182,7 +180,7 @@ function yourScore(){
     }
   });
 }
-
+//to set the highscores
 function getHighScores(){
   startScreen.setAttribute("class", "hide");
   startBtn.setAttribute("class", "hide");
@@ -192,16 +190,12 @@ function getHighScores(){
   clearInterval(timerInterval);
    timeEl.setAttribute("class", "hide");
   
-
-  
-
   let storedScores = JSON.parse(localStorage.getItem("highScores")); 
 
   // draw heading
   let heading = document.createElement("h2");
   heading.setAttribute("id", "main-heading");
   heading.textContent = "Top 5 High Score Hall of Fame";
-
   mainEl.appendChild(heading);
 
   
@@ -229,7 +223,6 @@ function getHighScores(){
     mainEl.appendChild(p);
   }
 
-
   // creates button to start the game
   let playAgain = document.createElement("button");
   playAgain.setAttribute("id", "playAgain");
@@ -242,7 +235,7 @@ function getHighScores(){
 }
 
 
-
+//to call and clean some values
 function cleanValues(){
   finish.setAttribute("class", "hide");
    currentQuestionIndex = -1;
